@@ -1,0 +1,245 @@
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- HUD ---------- */
+.hud {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  padding: var(--space-2) var(--safe-x);
+  background: var(--spine);
+  border-bottom: 0.125rem solid var(--gilt);
+}
+
+.hud__mark {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gilt);
+  margin-right: auto;
+}
+
+.hud__key {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.hud__fragment {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0.25rem;
+  border: 0.125rem dashed var(--lamp-dim);
+  border-radius: var(--radius);
+  color: var(--lamp-dim);
+  opacity: 0.7;
+  transition: color 0.2s ease-out, border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.hud__fragment--earned {
+  border: 0.125rem solid var(--brew);
+  color: var(--brew);
+  opacity: 1;
+  box-shadow: 0 0 0.75rem rgb(141 240 92 / 0.55);
+}
+
+.hud__score {
+  font-size: 1.125rem;
+}
+
+.hud__score strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gilt);
+}
+
+.hud__score-max {
+  color: var(--lamp-dim);
+}
+
+/* ---------- Screens ---------- */
+.screen {
+  flex: 1;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--space-5) var(--safe-x) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.screen-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 48rem;
+}
+
+.screen-heading__hint {
+  color: var(--lamp-dim);
+}
+
+/* Two columns once there is room: the map or question, then Mark and the controls. */
+.split {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.split__main,
+.split__side {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+@media (min-width: 64rem) {
+  .split {
+    grid-template-columns: minmax(0, 1.7fr) minmax(20rem, 1fr);
+  }
+  .split--even {
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 1fr);
+  }
+  .split__side {
+    position: sticky;
+    top: var(--space-4);
+  }
+}
+
+/* ---------- Actions: secondary bottom-left, primary bottom-right, every screen ---------- */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 0.0625rem solid rgb(217 169 63 / 0.35);
+}
+
+.actions__secondary,
+.actions__primary {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.actions__primary {
+  margin-left: auto;
+}
+
+/* ---------- Title ---------- */
+.screen--title {
+  max-width: 48rem;
+  gap: var(--space-5);
+}
+
+.title-art {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 0.1875rem solid var(--gilt);
+  box-shadow: 0 0 3rem rgb(141 240 92 / 0.22), 0 1rem 2rem rgb(0 0 0 / 0.5);
+}
+
+.name-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: var(--measure);
+}
+
+/* ---------- Intro ---------- */
+.screen--intro {
+  max-width: 56rem;
+}
+
+.scene {
+  min-height: 0;
+}
+
+.scene__art {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 0.1875rem solid var(--gilt);
+  display: block;
+}
+
+.scene--book {
+  display: none;
+}
+
+/* ---------- Binding and ending ---------- */
+.screen--binding,
+.screen--ending {
+  max-width: 56rem;
+}
+
+.ending-art {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 0.1875rem solid var(--gilt);
+  display: block;
+}
+
+/* ---------- Pin tool (authoring page) ---------- */
+.pin-tool {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pin-tool__controls {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pin-tool__map {
+  position: relative;
+  cursor: crosshair;
+  border: 0.125rem solid var(--gilt);
+}
+
+.pin-tool__map img {
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.pin-tool__dot {
+  position: absolute;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin: -0.4375rem 0 0 -0.4375rem;
+  border-radius: 50%;
+  background: #ee3b3b;
+  border: 0.125rem solid #fff;
+  pointer-events: none;
+}
+
+.pin-tool__dot--existing {
+  background: #2f7bff;
+}
+
+.pin-tool textarea {
+  width: 100%;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 1rem;
+  background: var(--spine);
+  color: var(--lamp);
+  border: 0.0625rem solid var(--gilt);
+  padding: var(--space-3);
+}

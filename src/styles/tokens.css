@@ -1,0 +1,64 @@
+/* Design tokens. See docs/DESIGN.md for the reasoning behind each. */
+:root {
+  /* Ground and pages */
+  --bottle: #12261e;
+  --spine: #0b1713;
+  --vellum: #eadfc0;
+  --shade: #d9c99c;
+
+  /* Text */
+  --ink: #2b2015;
+  --lamp: #f2ead3;
+  --lamp-dim: #c9c4ae;
+
+  /* Accents */
+  --gilt: #d9a93f;
+  --brew: #8df05c;
+  --madder: #b8452d;
+  --madder-ink: #8f2c19; /* madder text on vellum, 6:1 */
+  --madder-lamp: #f39b82; /* madder text on dark */
+
+  /* Proximity ramp: cool to warm, always paired with a shape and words */
+  --band-very-far: #7fa0cc;
+  --band-far: #9bbd8a;
+  --band-close: #e5ad48;
+  --band-very-close: #ee7448;
+
+  /* Type */
+  --font-display: 'Grenze Gotisch Variable', 'Palatino Linotype', Georgia, serif;
+  --font-body: 'Alegreya Variable', Georgia, 'Times New Roman', serif;
+
+  /* Spacing scale, in rem so the text-size setting scales layout too */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --radius: 0.5rem;
+  --target: 2.75rem; /* minimum touch target */
+  --measure: 38rem; /* comfortable line length */
+
+  /* Safe margins: viewport-relative, plus notches */
+  --safe-x: max(1rem, 3vw, env(safe-area-inset-left));
+  --safe-y: max(0.75rem, 2vh);
+
+  /* z-index scale. Nothing goes above 500. */
+  --z-dropdown: 100;
+  --z-modal: 200;
+  --z-tooltip: 300;
+  --z-toast: 400;
+}
+
+/* Text-size setting: everything is in rem, so this scales the whole interface. */
+html {
+  font-size: 100%;
+}
+html[data-text-size='large'] {
+  font-size: 125%;
+}
+html[data-text-size='larger'] {
+  font-size: 150%;
+}

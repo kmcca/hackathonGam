@@ -1,0 +1,125 @@
+/*
+ * The two memorable moments: the map reveal and the Binding.
+ * Everything else stays quiet. Reduced motion collapses these durations to zero.
+ */
+
+/* ---------- Map reveal: the page lights up from the middle ---------- */
+.map__canvas--reveal .map__reveal {
+  animation: map-reveal 480ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.map__canvas--reveal .map__glow {
+  background: radial-gradient(circle at 50% 55%, rgb(141 240 92 / 0.85), rgb(141 240 92 / 0) 60%);
+  animation: map-glow 700ms ease-out both;
+}
+
+@keyframes map-reveal {
+  from {
+    clip-path: circle(0% at 50% 55%);
+    filter: brightness(1.8) saturate(1.5);
+  }
+  to {
+    clip-path: circle(80% at 50% 55%);
+    filter: none;
+  }
+}
+
+@keyframes map-glow {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------- Last-resort hint: the target pin pulses ---------- */
+.pin--pulse .pin__mark {
+  animation: pin-pulse 1.4s ease-out infinite;
+}
+
+@keyframes pin-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(141 240 92 / 0.9), 0 0 1.25rem var(--brew);
+  }
+  100% {
+    box-shadow: 0 0 0 1.1rem rgb(141 240 92 / 0), 0 0 1.25rem var(--brew);
+  }
+}
+
+/* ---------- The book slams shut ---------- */
+.slam {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  overflow: hidden;
+  pointer-events: all;
+}
+
+.slam__cover {
+  position: relative;
+  flex: 1;
+  background:
+    linear-gradient(0deg, rgb(0 0 0 / 0.35), transparent 40%),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 4px),
+    #1d3a2d;
+  box-shadow: inset 0 0 0 0.75rem #14291f, inset 0 0 0 0.875rem var(--gilt);
+}
+
+.slam__cover--left {
+  animation: slam-left 650ms cubic-bezier(0.55, 0, 0.9, 0.4) both;
+}
+
+.slam__cover--right {
+  animation: slam-right 650ms cubic-bezier(0.55, 0, 0.9, 0.4) both;
+}
+
+.slam__flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #fff, rgb(141 240 92 / 0.7) 40%, transparent 75%);
+  opacity: 0;
+  animation: slam-flash 600ms ease-out 620ms both;
+}
+
+@keyframes slam-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slam-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slam-flash {
+  0% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The ending fades in from the shut book. */
+.screen--ending {
+  animation: ending-in 700ms ease-out both;
+}
+
+@keyframes ending-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

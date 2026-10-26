@@ -1,0 +1,22 @@
+import { useCallback, useState } from 'react'
+import { mark } from '../../story/mark'
+import { BindingScene } from '../BindingScene'
+import { MarkStrip, ScreenHeading } from '../Layout'
+
+interface Props {
+  playerName: string
+  onFinish: () => void
+}
+
+export function BindingScreen({ playerName, onFinish }: Props) {
+  const [line, setLine] = useState(() => mark.bindingStart(playerName))
+  const onMessage = useCallback((message: string) => setLine(message), [])
+
+  return (
+    <main className="screen screen--binding">
+      <ScreenHeading hint="Fit the three pieces together, then speak the spell.">Bind the key</ScreenHeading>
+      <MarkStrip>{line}</MarkStrip>
+      <BindingScene playerName={playerName} onFinish={onFinish} onMessage={onMessage} />
+    </main>
+  )
+}
